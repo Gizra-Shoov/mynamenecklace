@@ -7,8 +7,11 @@ var shoovWebdrivercss = require('shoov-webdrivercss');
 // PROVIDER_PREFIX=browserstack SELECTED_CAPS=ie11 mocha
 // PROVIDER_PREFIX=browserstack SELECTED_CAPS=iphone5 mocha
 
+var projectName = 'mynamenecklace';
+
 var capsConfig = {
   'chrome': {
+    'project': projectName,
     'browser' : 'Chrome',
     'browser_version' : '42.0',
     'os' : 'OS X',
@@ -16,6 +19,7 @@ var capsConfig = {
     'resolution' : '1024x768'
   },
   'ie11': {
+    'project': projectName,
     'browser' : 'IE',
     'browser_version' : '11.0',
     'os' : 'Windows',
@@ -23,6 +27,7 @@ var capsConfig = {
     'resolution' : '1024x768'
   },
   'iphone5': {
+    'project': projectName,
     'browser' : 'Chrome',
     'browser_version' : '42.0',
     'os' : 'OS X',
@@ -63,9 +68,20 @@ describe('Visual monitor testing', function() {
       .url(baseUrl)
       .webdrivercss(testName + '.homepage', {
         name: '1',
-        exclude: [],
-        remove: [],
-        screenWidth: selectedCaps == 'chrome' ? [640, 960, 1200] : undefined,
+        exclude: [
+          // Facebook like.
+          '.fb_iframe_widget',
+
+          '.LeftPanel img'
+        ],
+        remove: [
+          // Remove the pop-up and overlay bbackground.
+          '#exit_mist_container_0',
+          '.oa-overlay'
+        ],
+        hide: [
+          '.MainBanner img.photo'
+        ]
       }, resultsCallback)
       .call(done);
   });
