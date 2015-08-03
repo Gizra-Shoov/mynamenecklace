@@ -23,10 +23,9 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   }
 
   /**
-   * @When I fill require fields and add to cart
+   * @When I add initials and add to cart
    */
-  public function iFillRequireFieldsAndAddToCart()
-  {
+  public function iFillRequireFieldsAndAddToCart() {
     $this->iWaitForCssElement('#3393IBREPT0');
     // Fill initials
     $initials = $this->getSession()->getPage()->find('css', '#3393IBREPT0');
