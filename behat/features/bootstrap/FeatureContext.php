@@ -97,8 +97,7 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   /**
    * @Then I should see the item added to the cart
    */
-  public function iShouldSeeTheItemAddedToTheCart()
-  {
+  public function iShouldSeeTheItemAddedToTheCart() {
     $this->getSession()->visit($this->locatePath('ShoppingCart.aspx'));
     // Find the total price.
     $this->iWaitForCssElement('#total_price');
