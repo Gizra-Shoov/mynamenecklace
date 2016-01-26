@@ -66,21 +66,25 @@ describe('Visual monitor testing', function() {
   it('should show the home page',function(done) {
     client
       .url(baseUrl)
+      .pause(10000)
+      .click('.oa-close')
+      .execute(function() {
+     jQuery('.slide img').attr('src', 'https://cloud.githubusercontent.com/assets/5812423/12583039/5725b902-c449-11e5-9d10-ca10778d1f88.jpg')
+     })
       .webdrivercss(testName + '.homepage', {
         name: '1',
         exclude: [
           // Facebook like.
           '.fb_iframe_widget',
-
           '.LeftPanel img'
         ],
         remove: [
           // Remove the pop-up and overlay bbackground.
-          '#exit_mist_container_0',
+//          '#exit_mist_container_0',
           '.oa-overlay'
         ],
         hide: [
-          '.MainBanner img.photo'
+          //'.MainBanner img.photo'
         ]
       }, resultsCallback)
       .call(done);
